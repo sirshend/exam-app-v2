@@ -29,7 +29,7 @@
 
 from rest_framework_mongoengine import serializers
 from .models import Exam, Student, Professor, UserRegistration, UserLogin
-
+from ecdsa import SigningKey, SECP256k1
 
 class ExamSerializer(serializers.DocumentSerializer):
     class Meta:
@@ -54,6 +54,10 @@ class ProfessorSerializer(serializers.DocumentSerializer):
         model = Professor
         exclude = ('password', 'private_key',)
 
+class KeyPairSerializer(serializers.Serializer):
+    public_key = serializers.CharField(max_length=255)
+    private_key = serializers.CharField(max_length=255)
+
 # class UserRegistrationSerializer(serializers.Serializer):
 #     name = serializers.CharField(max_length=255)
 #     email = serializers.EmailField()
@@ -64,6 +68,7 @@ class ProfessorSerializer(serializers.DocumentSerializer):
 # class UserLoginSerializer(serializers.Serializer):
 #     email = serializers.EmailField()
 #     password = serializers.CharField(max_length=255)
+
 class UserRegistrationSerializer(serializers.DocumentSerializer):
     class Meta:
         model = UserRegistration
@@ -73,3 +78,13 @@ class UserLoginSerializer(serializers.DocumentSerializer):
     class Meta:
         model = UserLogin
         fields = '__all__'
+
+class ApplyForExamSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
+    token = serializers.CharField(max_length=500)
+    professors = serializers.ListField(child=serializers.CharField(max_length=255))
+
+class ApproveRequestSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
+    token = serializers.CharField(max_length=500)
+    students = serializers.ListField(child=serializers.CharField(max_length=255))

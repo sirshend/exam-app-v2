@@ -55,21 +55,25 @@ class Exam(Document):
         return self.name
 
 class Student(Document):
-    name = StringField(max_length=255)
+    name = StringField(max_length=255, unique=True)
     email = EmailField(unique=True)
     registration_number = StringField(max_length=50)
     role = StringField(max_length=50)
     password = StringField(max_length=255)
+    public_key = StringField(max_length=255)
     private_key = StringField(max_length=255)
+    partners = ListField(StringField(max_length=255), blank=True)
     applied_exams = ListField(ReferenceField('Exam', reverse_delete_rule=mongoengine.PULL), blank=True)
     permissions_received = ListField(ReferenceField('Exam', reverse_delete_rule=mongoengine.PULL), blank=True)
-    permissions_pending = ListField(ReferenceField('Exam', reverse_delete_rule=mongoengine.PULL), blank=True)
-
+    #permissions_ppending = ListField(ReferenceField('Exam', reverse_delete_rule=mongoengine.PULL), blank=True)
+    permissions_pending = ListField(StringField(max_length=255), blank=True)
+    permissions_obtained = ListField(StringField(max_length=255), blank=True)
+    
     def __str__(self):
         return self.name
 
 class Professor(Document):
-    name = StringField(max_length=255)
+    name = StringField(max_length=255, unique=True)
     email = EmailField(unique=True)
     registration_number = StringField(max_length=50)
     role = StringField(max_length=50)
@@ -81,13 +85,17 @@ class Professor(Document):
         return self.name
 
 class UserRegistration(Document):
-    name = StringField(max_length=255)
+    name = StringField(max_length=255, unique=True)
     email = EmailField()
     registration_number = StringField(max_length=50)
     role = StringField(max_length=50)
     password = StringField(max_length=255)
+    public_key = StringField(max_length=255)
+    private_key = StringField(max_length=255)
 
 class UserLogin(Document):
+    name = StringField(max_length=255, unique=True)
+    token = StringField(max_length=500)
     email = EmailField()
     password = StringField(max_length=255)
 
