@@ -54,9 +54,9 @@ class ProfessorSerializer(serializers.DocumentSerializer):
         model = Professor
         exclude = ('password', 'private_key',)
 
-class KeyPairSerializer(serializers.Serializer):
-    public_key = serializers.CharField(max_length=255)
-    private_key = serializers.CharField(max_length=255)
+# class KeyPairSerializer(serializers.DocumentSerializer):
+#     public_key = serializers.CharField(max_length=255)
+#     private_key = serializers.CharField(max_length=255)
 
 # class UserRegistrationSerializer(serializers.Serializer):
 #     name = serializers.CharField(max_length=255)
@@ -79,12 +79,12 @@ class UserLoginSerializer(serializers.DocumentSerializer):
         model = UserLogin
         fields = '__all__'
 
-class ApplyForExamSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=255)
-    token = serializers.CharField(max_length=500)
-    professors = serializers.ListField(child=serializers.CharField(max_length=255))
+# class ApplyForExamSerializer(serializers.DocumentSerializer):
+#     name = serializers.CharField(max_length=255)
+#     token = serializers.CharField(max_length=500)
+#     professors = serializers.ListField(child=serializers.CharField(max_length=255))
 
-class ApproveRequestSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=255)
-    token = serializers.CharField(max_length=500)
-    students = serializers.ListField(child=serializers.CharField(max_length=255))
+# class ApproveRequestSerializer(serializers.DocumentSerializer):
+#     name = serializers.CharField(max_length=255)
+#     token = serializers.CharField(max_length=500)
+#     students = serializers.ListField(child=serializers.CharField(max_length=255))
