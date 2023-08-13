@@ -117,12 +117,17 @@ WSGI_APPLICATION = 'exam_approval_backend.wsgi.application'
 # mongodb://127.0.0.1:27017
 #mongoengine.disconnect()
 
-MONGO_USER_NAME = "sirshendu"
-MONGO_PASSWORD = "271828"
-MONGO_ADDRESS = "127.0.0.1:27017"
-mongoengine.connect(db='db30', host=f'mongodb://{MONGO_USER_NAME}:{MONGO_PASSWORD}@{MONGO_ADDRESS}/')
+# MONGO_USER_NAME = "sirshendu"
+# MONGO_PASSWORD = "271828"
+# MONGO_ADDRESS = "127.0.0.1:27017"
+# mongoengine.connect(db='db30', host=f'mongodb://{MONGO_USER_NAME}:{MONGO_PASSWORD}@{MONGO_ADDRESS}/')
 
+MONGO_USER_NAME = "sirshendu2e01"
+MONGO_PASSWORD = "HKIsXoMif7yM4KAl"
+MONGO_ADDRESS = "cluster0.flmhac1.mongodb.net"
+mongoengine.connect(db='db40', host=f'mongodb+srv://{MONGO_USER_NAME}:{MONGO_PASSWORD}@{MONGO_ADDRESS}/')
 
+# mongodb+srv://sirshendu2e01:<password>@cluster0.flmhac1.mongodb.net/?retryWrites=true&w=majority
 
 
 
