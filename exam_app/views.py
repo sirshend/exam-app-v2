@@ -76,9 +76,15 @@ def login_user(request):
             return Response({'message': 'Password incorrect'})
 
         # Generate JWT token
+        # token = jwt.encode({
+        #     'name': name,
+        #     'exp': datetime.utcnow() + timedelta(minutes=settings.JWT_EXPIRATION_DELTA)
+        # }, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+
+        # Generate JWT token
         token = jwt.encode({
             'name': name,
-            'exp': datetime.utcnow() + timedelta(minutes=settings.JWT_EXPIRATION_DELTA)
+            'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA
         }, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
 
         # Update the user's token in the database

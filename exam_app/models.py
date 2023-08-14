@@ -94,7 +94,7 @@ class UserRegistration(Document):
     private_key = StringField(max_length=255)
 
 class UserLogin(Document):
-    name = StringField(max_length=255, unique=True)
+    name = StringField(max_length=255)
     token = StringField(max_length=500)
     email = EmailField()
     password = StringField(max_length=255)
